@@ -20,7 +20,7 @@ class App extends StatelessWidget {
               title: 'Registro',
             ),
         '/home': (context) => const HomePage(
-              title: 'Pagina de Post',
+              title: 'Home',
             ),
       },
     );

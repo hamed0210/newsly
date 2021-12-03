@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -29,9 +31,92 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isSwitched = false;
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        // leading: Container(),
+        automaticallyImplyLeading: false,
+        title: Text('Newsly', style: TextStyle(fontFamily: 'RacingSansOne', color: HexColor('#1E2A78')),),
+        backgroundColor: Colors.white,
+         actions: <Widget>[
+           IconButton(
+             icon: FaIcon(FontAwesomeIcons.mapMarked, color: HexColor('#46424230')),
+             iconSize: 16,
+             onPressed: () {},),
+            TextButton(
+              child: Text(
+                'Chats',
+                style: TextStyle(color: HexColor('#46424230'), fontFamily: 'Antonio', fontWeight: FontWeight.bold),
+              ),
+              // color: HexColor('#2EC37C'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/home');
+              },
+            ),
+          TextButton(
+              child: Text(
+                'Noticias',
+                style: TextStyle(color: HexColor('#46424230'), fontFamily: 'Antonio', fontWeight: FontWeight.bold),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/home');
+              },
+            ),
+            Center(
+            child: Container(
+              margin: const EdgeInsets.only(left: 10.0),
+              child: Text('Luffy0219', style: TextStyle(color: HexColor('#1E2A78'), fontFamily: 'Antonio', fontWeight: FontWeight.bold)),
+            ),
+            ),
+            PopupMenuButton(
+              offset: const Offset(0, 70),
+              icon: FaIcon(FontAwesomeIcons.caretDown, color: HexColor('#1E2A78')),
+              itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                PopupMenuItem(
+                  child: Row(
+                    children: [
+                      Switch(value: isSwitched, onChanged: (value) {}),
+                      const Spacer(),
+                      const Expanded(
+                      child:  Text('Dark Mode', style: TextStyle(fontFamily: 'Antonio', fontWeight: FontWeight.bold))
+                      
+                      )
+                    ],
+                  )
+                ),
+                const PopupMenuDivider(
+                height: 10,
+              ),
+                PopupMenuItem(
+                  child: Row(
+                    children: [
+                      FaIcon(FontAwesomeIcons.solidUser, color: HexColor('#1E2A78')),
+                      const Spacer(),
+                      const Expanded(
+                      child:  Text('Perfil', style: TextStyle(fontFamily: 'Antonio', fontWeight: FontWeight.bold), textAlign: TextAlign.right,)
+                      
+                      )
+                    ],
+                  )
+                ),
+                const PopupMenuDivider(
+                height: 10,
+              ),
+                PopupMenuItem(
+                  child: Row(
+                    children: [
+                      FaIcon(FontAwesomeIcons.signOutAlt, color: HexColor('#1E2A78')),
+                      const Spacer(),
+                      const Expanded(
+                      child:  Text('Cerrar Sesion', style: TextStyle(fontFamily: 'Antonio', fontWeight: FontWeight.bold))
+                      
+                      )
+                    ],
+                  )
+                )
+                  // child: Text('Dark Mode', style: TextStyle(fontFamily: 'Antonio', fontWeight: FontWeight.bold)))
+              ])
+         ]
       ),
       body: ListView.builder(
         itemCount: listado.length,
