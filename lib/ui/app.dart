@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:newsly/ui/pages/home.dart';
 import 'package:newsly/ui/pages/login.dart';
 import 'package:newsly/ui/pages/register.dart';
+import 'package:newsly/ui/pages/noticias.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-       debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       routes: {
         '/': (context) => const LoginPage(
@@ -21,6 +22,9 @@ class App extends StatelessWidget {
             ),
         '/home': (context) => const HomePage(
               title: 'Home',
+            ),
+        '/noticias': (context) => const NoticiasPage(
+              title: 'Noticias',
             ),
       },
     );

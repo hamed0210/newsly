@@ -4,26 +4,42 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.title}) : super(key: key);
+class NoticiasPage extends StatefulWidget {
+  const NoticiasPage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<NoticiasPage> createState() => _NoticiasPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _NoticiasPageState extends State<NoticiasPage> {
   // Listado de cadenas
   var listado = [
-    Persona("Luffy0219", "hace 2 minutos",
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
-    Persona("Zoro__", "hace 4 minutos",
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
-    Persona("Zoro__", "hace 15 minutos",
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
-    Persona("Luffy0219", "hace 2 minutos",
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+    Persona(
+      "Titulo",
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Luffy0219",
+      "hace 2 minutos",
+    ),
+    Persona(
+      "Titulo Titulo Titulo",
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Luffy0219",
+      "hace 2 minutos",
+    ),
+    Persona(
+      "Titulo",
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Luffy0219546546546546",
+      "hace 2 minutos",
+    ),
+    Persona(
+      "Titulo",
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Luffy0219",
+      "hace 2 minutos",
+    ),
   ];
 
   @override
@@ -145,29 +161,79 @@ class _HomePageState extends State<HomePage> {
               margin: const EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
               child: Container(
                   // padding: const EdgeInsets.all(20.0),
-                  padding: const EdgeInsets.only(
-                      left: 20.0, right: 20.0, top: 15.0, bottom: 15.0),
-                  child: Column(children: [
-                    Row(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(right: 20.0),
-                          child: Text(listado[i].username,
-                              style: const TextStyle(
-                                  fontFamily: 'Antonio',
-                                  fontWeight: FontWeight.bold)),
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: Row(children: [
+                    Expanded(
+                      flex: 3,
+
+                      child: FittedBox(
+                        child: Image.network(
+                          'https://files.rcnradio.com/public/styles/d_img_850x580/public/2021-12/volcan_semeru_0.jpg?sIXEo7Nt8C6ZaN29D6C6LjbrF88Z5ZDA&itok=zujp-W4w',
                         ),
-                        Text(listado[i].time,
-                            style: TextStyle(
-                                fontFamily: 'Antonio',
-                                fontSize: 14,
-                                color: HexColor('#C4C4C4'))),
-                      ],
+                        fit: BoxFit.cover,
+                      ),
+
+                      // Image.network(
+                      //   'https://files.rcnradio.com/public/styles/d_img_850x580/public/2021-12/volcan_semeru_0.jpg?sIXEo7Nt8C6ZaN29D6C6LjbrF88Z5ZDA&itok=zujp-W4w',
+                      //   fit: BoxFit.fitHeight,
+                      // ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 15.0),
-                      child: Text(listado[i].desc,
-                          style: TextStyle(color: HexColor('#464242'))),
+                    Expanded(
+                      flex: 5,
+                      child: Column(
+                        children: [
+                          Container(
+                              margin: const EdgeInsets.only(
+                                  top: 15.0, bottom: 15.0, left: 15.0),
+                              alignment: Alignment.centerLeft,
+                              child: Expanded(
+                                flex: 5,
+                                child: Text(listado[i].title,
+                                    style: TextStyle(
+                                        color: HexColor('#464242'),
+                                        fontSize: 19,
+                                        fontFamily: 'Antonio',
+                                        fontWeight: FontWeight.bold)),
+                              )),
+                          Container(
+                              margin: const EdgeInsets.only(
+                                  bottom: 15.0, left: 15.0),
+                              alignment: Alignment.centerLeft,
+                              child: Expanded(
+                                flex: 7,
+                                child: Text(
+                                  listado[i].desc,
+                                  style: TextStyle(
+                                    color: HexColor('#464242'),
+                                  ),
+                                ),
+                              )),
+                          Row(
+                            children: [
+                              Expanded(
+                                  flex: 3,
+                                  child: Container(
+                                    margin: const EdgeInsets.only(
+                                        right: 20.0, left: 15.0, bottom: 15.0),
+                                    child: Text('By: ' + listado[i].username,
+                                        style: const TextStyle(
+                                            fontFamily: 'Antonio',
+                                            fontWeight: FontWeight.bold)),
+                                  )),
+                              Expanded(
+                                  flex: 2,
+                                  child: Container(
+                                      margin:
+                                          const EdgeInsets.only(bottom: 15.0),
+                                      child: Text(listado[i].time,
+                                          style: TextStyle(
+                                              fontFamily: 'Antonio',
+                                              fontSize: 14,
+                                              color: HexColor('#C4C4C4')))))
+                            ],
+                          )
+                        ],
+                      ),
                     )
                   ])));
         },
@@ -177,13 +243,15 @@ class _HomePageState extends State<HomePage> {
 }
 
 class Persona {
+  late String title;
+  late String desc;
   late String username;
   late String time;
-  late String desc;
 
   Persona(
+    this.title,
+    this.desc,
     this.username,
     this.time,
-    this.desc,
   );
 }
