@@ -44,7 +44,9 @@ class _HomePageState extends State<HomePage> {
               icon: FaIcon(FontAwesomeIcons.mapMarked,
                   color: HexColor('#46424230')),
               iconSize: 16,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/ubicaciones');
+              },
             ),
             TextButton(
               child: Text(
@@ -56,7 +58,7 @@ class _HomePageState extends State<HomePage> {
               ),
               // color: HexColor('#2EC37C'),
               onPressed: () {
-                Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/chats');
               },
             ),
             TextButton(
@@ -121,6 +123,9 @@ class _HomePageState extends State<HomePage> {
                         height: 10,
                       ),
                       PopupMenuItem(
+                          // onTap: () {
+                          //   Navigator.pushNamed(context, '/');
+                          // },
                           child: Row(
                         children: [
                           FaIcon(FontAwesomeIcons.signOutAlt,
@@ -136,42 +141,78 @@ class _HomePageState extends State<HomePage> {
                       // child: Text('Dark Mode', style: TextStyle(fontFamily: 'Antonio', fontWeight: FontWeight.bold)))
                     ])
           ]),
-      body: ListView.builder(
-        itemCount: listado.length,
-        padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
-        itemBuilder: (context, i) {
-          return Card(
-              elevation: 5.0,
-              margin: const EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
-              child: Container(
-                  // padding: const EdgeInsets.all(20.0),
-                  padding: const EdgeInsets.only(
-                      left: 20.0, right: 20.0, top: 15.0, bottom: 15.0),
-                  child: Column(children: [
-                    Row(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(right: 20.0),
-                          child: Text(listado[i].username,
-                              style: const TextStyle(
-                                  fontFamily: 'Antonio',
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                        Text(listado[i].time,
-                            style: TextStyle(
-                                fontFamily: 'Antonio',
-                                fontSize: 14,
-                                color: HexColor('#C4C4C4'))),
-                      ],
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 15.0),
-                      child: Text(listado[i].desc,
-                          style: TextStyle(color: HexColor('#464242'))),
-                    )
-                  ])));
-        },
+      body: Column(
+        children: [
+          Container(
+            alignment: Alignment.centerLeft,
+            margin: const EdgeInsets.only(left: 25.0, top: 20.0, bottom: 5.0),
+            child: Text(
+              'Estados',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Antonio',
+                  fontSize: 17,
+                  color: HexColor('#46424230')),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: listado.length,
+              padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
+              itemBuilder: (context, i) {
+                return Card(
+                    elevation: 5.0,
+                    margin: const EdgeInsets.only(
+                        left: 20.0, right: 20.0, top: 10.0),
+                    child: Container(
+                        // padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.only(
+                            left: 20.0, right: 20.0, top: 15.0, bottom: 15.0),
+                        child: Column(children: [
+                          Row(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(right: 20.0),
+                                child: Text(listado[i].username,
+                                    style: const TextStyle(
+                                        fontFamily: 'Antonio',
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                              Text(listado[i].time,
+                                  style: TextStyle(
+                                      fontFamily: 'Antonio',
+                                      fontSize: 14,
+                                      color: HexColor('#C4C4C4'))),
+                            ],
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(top: 15.0),
+                            child: Text(listado[i].desc,
+                                style: TextStyle(color: HexColor('#464242'))),
+                          )
+                        ])));
+              },
+            ),
+          ),
+        ],
       ),
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {},
+          // tooltip: 'LogIn',
+          backgroundColor: Colors.white,
+          label: Text(
+            'Nuevo Estado',
+            style: TextStyle(
+                fontFamily: 'Antonio',
+                fontWeight: FontWeight.bold,
+                fontSize: 17,
+                color: HexColor('#1E2A78')),
+          ),
+          icon: FaIcon(
+            FontAwesomeIcons.plus,
+            size: 18,
+            color: HexColor('#1E2A78'),
+          )),
     );
   }
 }

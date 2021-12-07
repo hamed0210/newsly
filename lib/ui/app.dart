@@ -3,6 +3,9 @@ import 'package:newsly/ui/pages/home.dart';
 import 'package:newsly/ui/pages/login.dart';
 import 'package:newsly/ui/pages/register.dart';
 import 'package:newsly/ui/pages/noticias.dart';
+import 'package:newsly/ui/pages/chats.dart';
+import 'package:newsly/ui/pages/chat.dart';
+import 'package:newsly/ui/pages/ubicaciones.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -25,6 +28,15 @@ class App extends StatelessWidget {
             ),
         '/noticias': (context) => const NoticiasPage(
               title: 'Noticias',
+            ),
+        '/chats': (context) => const ChatsPage(
+              title: 'Chats',
+            ),
+        '/chat': (context) => const ChatPage(
+              title: 'Chat',
+            ),
+        '/ubicaciones': (context) => const UbicacionesPage(
+              title: 'Ubicaciones',
             ),
       },
     );

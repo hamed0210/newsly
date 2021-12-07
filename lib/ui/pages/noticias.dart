@@ -47,7 +47,8 @@ class _NoticiasPageState extends State<NoticiasPage> {
     bool isSwitched = false;
     return Scaffold(
       appBar: AppBar(
-          // leading: Container(),
+          iconTheme: IconThemeData(color: HexColor('#1E2A78')),
+          // leading: ,
           automaticallyImplyLeading: false,
           title: Text(
             'Newsly',
@@ -60,7 +61,9 @@ class _NoticiasPageState extends State<NoticiasPage> {
               icon: FaIcon(FontAwesomeIcons.mapMarked,
                   color: HexColor('#46424230')),
               iconSize: 16,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/ubicaciones');
+              },
             ),
             TextButton(
               child: Text(
@@ -72,7 +75,7 @@ class _NoticiasPageState extends State<NoticiasPage> {
               ),
               // color: HexColor('#2EC37C'),
               onPressed: () {
-                Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/chats');
               },
             ),
             TextButton(
@@ -152,92 +155,141 @@ class _NoticiasPageState extends State<NoticiasPage> {
                       // child: Text('Dark Mode', style: TextStyle(fontFamily: 'Antonio', fontWeight: FontWeight.bold)))
                     ])
           ]),
-      body: ListView.builder(
-        itemCount: listado.length,
-        padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
-        itemBuilder: (context, i) {
-          return Card(
-              elevation: 5.0,
-              margin: const EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
-              child: Container(
-                  // padding: const EdgeInsets.all(20.0),
-                  padding: const EdgeInsets.only(right: 20.0),
-                  child: Row(children: [
-                    Expanded(
-                      flex: 3,
+      body: Column(
+        children: [
+          Row(
+            children: [
+              Container(
+                  margin:
+                      const EdgeInsets.only(left: 20.0, top: 20.0, bottom: 5.0),
+                  child: BackButton(color: HexColor('#1E2A78'))),
+              Container(
+                alignment: Alignment.centerLeft,
+                margin:
+                    const EdgeInsets.only(left: 10.0, top: 20.0, bottom: 5.0),
+                child: Text(
+                  'Noticias',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Antonio',
+                      fontSize: 17,
+                      color: HexColor('#46424230')),
+                ),
+              ),
+            ],
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: listado.length,
+              padding: const EdgeInsets.only(top: 5.0, bottom: 20.0),
+              itemBuilder: (context, i) {
+                return Card(
+                    elevation: 5.0,
+                    margin: const EdgeInsets.only(
+                        left: 20.0, right: 20.0, top: 10.0),
+                    child: Container(
+                        // padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.only(right: 20.0),
+                        child: Row(children: [
+                          Expanded(
+                            flex: 3,
 
-                      child: FittedBox(
-                        child: Image.network(
-                          'https://files.rcnradio.com/public/styles/d_img_850x580/public/2021-12/volcan_semeru_0.jpg?sIXEo7Nt8C6ZaN29D6C6LjbrF88Z5ZDA&itok=zujp-W4w',
-                        ),
-                        fit: BoxFit.cover,
-                      ),
+                            // child: FittedBox(
+                            //   child: Image.network(
+                            //     'https://files.rcnradio.com/public/styles/d_img_850x580/public/2021-12/volcan_semeru_0.jpg?sIXEo7Nt8C6ZaN29D6C6LjbrF88Z5ZDA&itok=zujp-W4w',
+                            //     fit: BoxFit.fill,
+                            //   ),
+                            // ),
 
-                      // Image.network(
-                      //   'https://files.rcnradio.com/public/styles/d_img_850x580/public/2021-12/volcan_semeru_0.jpg?sIXEo7Nt8C6ZaN29D6C6LjbrF88Z5ZDA&itok=zujp-W4w',
-                      //   fit: BoxFit.fitHeight,
-                      // ),
-                    ),
-                    Expanded(
-                      flex: 5,
-                      child: Column(
-                        children: [
-                          Container(
-                              margin: const EdgeInsets.only(
-                                  top: 15.0, bottom: 15.0, left: 15.0),
-                              alignment: Alignment.centerLeft,
-                              child: Expanded(
-                                flex: 5,
-                                child: Text(listado[i].title,
-                                    style: TextStyle(
-                                        color: HexColor('#464242'),
-                                        fontSize: 19,
-                                        fontFamily: 'Antonio',
-                                        fontWeight: FontWeight.bold)),
-                              )),
-                          Container(
-                              margin: const EdgeInsets.only(
-                                  bottom: 15.0, left: 15.0),
-                              alignment: Alignment.centerLeft,
-                              child: Expanded(
-                                flex: 7,
-                                child: Text(
-                                  listado[i].desc,
-                                  style: TextStyle(
-                                    color: HexColor('#464242'),
-                                  ),
-                                ),
-                              )),
-                          Row(
-                            children: [
-                              Expanded(
-                                  flex: 3,
-                                  child: Container(
+                            child: Image.network(
+                              'https://files.rcnradio.com/public/styles/d_img_850x580/public/2021-12/volcan_semeru_0.jpg?sIXEo7Nt8C6ZaN29D6C6LjbrF88Z5ZDA&itok=zujp-W4w',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                          Expanded(
+                            flex: 5,
+                            child: Column(
+                              children: [
+                                Container(
                                     margin: const EdgeInsets.only(
-                                        right: 20.0, left: 15.0, bottom: 15.0),
-                                    child: Text('By: ' + listado[i].username,
-                                        style: const TextStyle(
-                                            fontFamily: 'Antonio',
-                                            fontWeight: FontWeight.bold)),
-                                  )),
-                              Expanded(
-                                  flex: 2,
-                                  child: Container(
-                                      margin:
-                                          const EdgeInsets.only(bottom: 15.0),
-                                      child: Text(listado[i].time,
+                                        top: 15.0, bottom: 15.0, left: 15.0),
+                                    alignment: Alignment.centerLeft,
+                                    child: Expanded(
+                                      flex: 5,
+                                      child: Text(listado[i].title,
                                           style: TextStyle(
+                                              color: HexColor('#464242'),
+                                              fontSize: 19,
                                               fontFamily: 'Antonio',
-                                              fontSize: 14,
-                                              color: HexColor('#C4C4C4')))))
-                            ],
+                                              fontWeight: FontWeight.bold)),
+                                    )),
+                                Container(
+                                    margin: const EdgeInsets.only(
+                                        bottom: 15.0, left: 15.0),
+                                    alignment: Alignment.centerLeft,
+                                    child: Expanded(
+                                      flex: 7,
+                                      child: Text(
+                                        listado[i].desc,
+                                        style: TextStyle(
+                                          color: HexColor('#464242'),
+                                        ),
+                                      ),
+                                    )),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                        flex: 3,
+                                        child: Container(
+                                          margin: const EdgeInsets.only(
+                                              right: 20.0,
+                                              left: 15.0,
+                                              bottom: 15.0),
+                                          child: Text(
+                                              'By: ' + listado[i].username,
+                                              style: const TextStyle(
+                                                  fontFamily: 'Antonio',
+                                                  fontWeight: FontWeight.bold)),
+                                        )),
+                                    Expanded(
+                                        flex: 2,
+                                        child: Container(
+                                            margin: const EdgeInsets.only(
+                                                bottom: 15.0),
+                                            child: Text(listado[i].time,
+                                                style: TextStyle(
+                                                    fontFamily: 'Antonio',
+                                                    fontSize: 14,
+                                                    color:
+                                                        HexColor('#C4C4C4')))))
+                                  ],
+                                )
+                              ],
+                            ),
                           )
-                        ],
-                      ),
-                    )
-                  ])));
-        },
+                        ])));
+              },
+            ),
+          )
+        ],
       ),
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {},
+          // tooltip: 'LogIn',
+          backgroundColor: Colors.white,
+          label: Text(
+            'Nueva Noticia',
+            style: TextStyle(
+                fontFamily: 'Antonio',
+                fontWeight: FontWeight.bold,
+                fontSize: 17,
+                color: HexColor('#1E2A78')),
+          ),
+          icon: FaIcon(
+            FontAwesomeIcons.plus,
+            size: 18,
+            color: HexColor('#1E2A78'),
+          )),
     );
   }
 }
