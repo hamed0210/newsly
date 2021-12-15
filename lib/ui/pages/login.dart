@@ -6,7 +6,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, required this.title}) : super(key: key);
-
   final String title;
 
   @override
@@ -20,6 +19,12 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
+  final scafoldKey = GlobalKey<ScaffoldState>();
+  final formularioKey = GlobalKey<FormState>();
+  final formularioKey2 = GlobalKey<FormState>();
+  late String email;
+  late String contrasena;
+  bool ishiddenpassword = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,20 +48,38 @@ class _LoginPageState extends State<LoginPage> {
           )),
           Container(
             margin: const EdgeInsets.only(left: 40.0, bottom: 10.0),
-            child: const Text('Usuario',
+            child: const Text('Correo',
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
           ),
           Center(
             child: Container(
               margin:
                   const EdgeInsets.only(left: 40.0, right: 40.0, bottom: 40.0),
-              child: TextField(
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Escriba su usuario',
-                    // labelText: 'Usuario',
-                    filled: true,
-                    fillColor: HexColor('#f4f4f4')),
+              child: Form(
+                key: formularioKey,
+                child: TextFormField(
+                  onSaved: (valor) {
+                    email = valor!;
+                  },
+                  validator: (valor) {
+                    email = valor!;
+                    if (valor.isEmpty) {
+                      return "Llene este campo";
+                    }
+                    if (!valor.contains("@")) {
+                      return "Debe ingresar un correo electronico";
+                    }
+                    if (email != "prueba@gmail.com") {
+                      return "Email incorrecto";
+                    }
+                  },
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Escriba su correo electronico',
+                      // labelText: 'Usuario',
+                      filled: true,
+                      fillColor: HexColor('#f4f4f4')),
+                ),
               ),
             ),
           ),
@@ -69,13 +92,32 @@ class _LoginPageState extends State<LoginPage> {
             child: Container(
               margin:
                   const EdgeInsets.only(left: 40.0, right: 40.0, bottom: 40.0),
-              child: TextField(
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Escriba su contraseña',
-                    // labelText: 'Usuario',
-                    filled: true,
-                    fillColor: HexColor('#f4f4f4')),
+              child: Form(
+                key: formularioKey2,
+                child: TextFormField(
+                  onSaved: (valor) {
+                    contrasena = valor!;
+                  },
+                  validator: (valor) {
+                    contrasena = valor!;
+                    if (valor.isEmpty) {
+                      return "Llene este campo.";
+                    }
+                    if (valor.length < 6) {
+                      return "La contraseña debe ser minimo de 6 caracteres.";
+                    }
+                    if (contrasena != "123456") {
+                      return "Contraseña es incorrecta";
+                    }
+                  },
+                  obscureText: ishiddenpassword,
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Escriba su contraseña',
+                      // labelText: 'Usuario',
+                      filled: true,
+                      fillColor: HexColor('#f4f4f4')),
+                ),
               ),
             ),
           ),
@@ -92,7 +134,8 @@ class _LoginPageState extends State<LoginPage> {
               textColor: Colors.white,
               color: HexColor('#2EC37C'),
               onPressed: () {
-                Navigator.pushNamed(context, '/home');
+                _mostrarsegundapantalla(context);
+                //Navigator.pushNamed(context, '/home');
               },
             ),
           )),
@@ -135,5 +178,15 @@ class _LoginPageState extends State<LoginPage> {
       // floatingActionButton: FloatingActionButton(
       //     onPressed: _login, tooltip: 'LogIn', child: const Icon(Icons.login)),
     );
+  }
+
+  void _mostrarsegundapantalla(BuildContext context) {
+    if (formularioKey.currentState!.validate()) {
+      formularioKey.currentState!.save();
+      if (formularioKey2.currentState!.validate()) {
+        formularioKey2.currentState!.save();
+        Navigator.of(context).pushNamed("/home");
+      }
+    }
   }
 }

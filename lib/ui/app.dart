@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import 'package:newsly/ui/pages/home.dart';
 import 'package:newsly/ui/pages/login.dart';
 import 'package:newsly/ui/pages/register.dart';
@@ -13,13 +15,16 @@ class App extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      home: const LoginPage(
+        title: 'LogIn',
+      ),
       routes: {
-        '/': (context) => const LoginPage(
-              title: 'LogIn',
-            ),
+        // '/': (context) => const LoginPage(
+        //       title: 'LogIn',
+        //     ),
         '/register': (context) => const RegisterPage(
               title: 'Registro',
             ),
@@ -42,3 +47,21 @@ class App extends StatelessWidget {
     );
   }
 }
+
+// class Wrong extends StatelessWidget {
+//   const Wrong({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Center(child: Text("Ocurrio un error!"));
+//   }
+// }
+
+// class Loading extends StatelessWidget {
+//   const Loading({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return const CircularProgressIndicator();
+//   }
+// }
